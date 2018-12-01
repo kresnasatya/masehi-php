@@ -7,6 +7,42 @@ class MasehiUtil
     public function getExplicitMonths()
     {
         return array(
+            '1' => 'January',
+            '2' => 'February',
+            '3' => 'March',
+            '4' => 'April',
+            '5' => 'May',
+            '6' => 'June',
+            '7' => 'July',
+            '8' => 'August',
+            '9' => 'September',
+            '10' => 'October',
+            '11' => 'November',
+            '12' => 'December',
+        );
+    }
+
+    public function getImplicitMonths()
+    {
+        return array(
+            '1' => 'Jan',
+            '2' => 'Feb',
+            '3' => 'Mar',
+            '4' => 'Apr',
+            '5' => 'May',
+            '6' => 'Jun',
+            '7' => 'Jul',
+            '8' => 'Aug',
+            '9' => 'Sep',
+            '10' => 'Oct',
+            '11' => 'Nov',
+            '12' => 'Dec',
+        );
+    }
+
+    public function getExplicitLocalMonths()
+    {
+        return array(
             '1' => 'Januari',
             '2' => 'Februari',
             '3' => 'Maret',
@@ -18,11 +54,11 @@ class MasehiUtil
             '9' => 'September',
             '10' => 'Oktober',
             '11' => 'November',
-            '12' => 'Desember'
+            '12' => 'Desember',
         );
     }
 
-    public function getImplicitMonths()
+    public function getImplicitLocalMonths()
     {
         return array(
             '1' => 'Jan',
@@ -36,7 +72,7 @@ class MasehiUtil
             '9' => 'Sept',
             '10' => 'Okt',
             '11' => 'Nov',
-            '12' => 'Des'
+            '12' => 'Des',
         );
     }
 
@@ -49,7 +85,7 @@ class MasehiUtil
             '4' => 'Rabu',
             '5' => 'Kamis',
             '6' => 'Jumat',
-            '7' => 'Sabtu'
+            '7' => 'Sabtu',
         );
     }
 
@@ -87,7 +123,7 @@ class MasehiUtil
             '9' => 'September',
             '10' => 'Oktober',
             '11' => 'November',
-            '12' => 'Desember'
+            '12' => 'Desember',
         );
 
         return $months[$key];
