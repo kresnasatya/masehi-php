@@ -32,4 +32,23 @@ class MasehiValidator
     {
         return preg_match("/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/", $time);
     }
+
+    public function compareDate($start_date, $end_date)
+    {
+        $start_date = $this->parsingDate($start_date);
+        $end_date = $this->parsingDate($end_date);
+        if ($end_date >= $start_date || $end_date == $start_date) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function compareDateTime($start_datetime, $end_datetime)
+    {
+        if ($end_datetime > $start_datetime) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

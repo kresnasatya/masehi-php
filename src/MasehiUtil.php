@@ -4,7 +4,7 @@ namespace Masehi;
 
 class MasehiUtil
 {
-    public function getMonths()
+    public function getExplicitMonths()
     {
         return array(
             '1' => 'Januari',
@@ -22,6 +22,24 @@ class MasehiUtil
         );
     }
 
+    public function getImplicitMonths()
+    {
+        return array(
+            '1' => 'Jan',
+            '2' => 'Feb',
+            '3' => 'Mar',
+            '4' => 'Apr',
+            '5' => 'Mei',
+            '6' => 'Jun',
+            '7' => 'Jul',
+            '8' => 'Agust',
+            '9' => 'Sept',
+            '10' => 'Okt',
+            '11' => 'Nov',
+            '12' => 'Des'
+        );
+    }
+
     public function getDays()
     {
         return array(
@@ -35,22 +53,58 @@ class MasehiUtil
         );
     }
 
-    public function compareDate($start_date, $end_date)
+    public function searchImplicitMonth($key)
     {
-        $start_date = $this->parsingDate($start_date);
-        $end_date = $this->parsingDate($end_date);
-        if ($end_date >= $start_date || $end_date == $start_date) {
-            return true;
-        } else {
-            return false;
-        }
+        $months = array(
+            '1' => 'Jan',
+            '2' => 'Feb',
+            '3' => 'Mar',
+            '4' => 'Apr',
+            '5' => 'Mei',
+            '6' => 'Jun',
+            '7' => 'Jul',
+            '8' => 'Ags',
+            '9' => 'Sep',
+            '10' => 'Okt',
+            '11' => 'Nov',
+            '12' => 'Des',
+        );
+
+        return $months[$key];
     }
-    public function compareDateTime($start_datetime, $end_datetime)
+
+    public function searchExplicitMonth($key)
     {
-        if ($end_datetime > $start_datetime) {
-            return true;
-        } else {
-            return false;
-        }
+        $months = array(
+            '1' => 'Januari',
+            '2' => 'Februari' ,
+            '3' => 'Maret',
+            '4' => 'April',
+            '5' => 'Mei',
+            '6' => 'Juni',
+            '7' => 'Juli',
+            '8' => 'Agustus',
+            '9' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+        );
+
+        return $months[$key];
     }
+
+    public function searchDay($key)
+    {
+        $days = array(
+            'Sun' => 'Minggu',
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu',
+        );
+
+        return $days[$key];
+    }    
 }

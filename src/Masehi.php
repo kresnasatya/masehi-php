@@ -3,60 +3,7 @@
 namespace Masehi;
 
 class Masehi
-{
-
-    public function searchImplicitMonth($value)
-    {
-        $months = array(
-            'Jan' => 1,
-            'Feb' => 2,
-            'Mar' => 3,
-            'Apr' => 4,
-            'Mei' => 5,
-            'Juni' => 6,
-            'Jul' => 7,
-            'Ags' => 8,
-            'Sep' => 9,
-            'Okt' => 10,
-            'Nov' => 11,
-            'Des' => 12
-        );
-        return array_search($value, $months);
-    }
-
-    public function searchExplicitMonth($value)
-    {
-        $months = array(
-            'Januari' => 1,
-            'Februari' => 2,
-            'Maret' => 3,
-            'April' => 4,
-            'Mei' => 5,
-            'Juni' => 6,
-            'Juli' => 7,
-            'Agustus' => 8,
-            'September' => 9,
-            'Oktober' => 10,
-            'November' => 11,
-            'Desember' => 12
-        );
-        return array_search($value, $months);
-    }
-
-    public function searchDay($value)
-    {
-        $days = array(
-            'Minggu' => 'Sun',
-            'Senin' => 'Mon',
-            'Selasa' => 'Tue',
-            'Rabu' => 'Wed',
-            'Kamis' => 'Thu',
-            'Jumat' => 'Fri',
-            'Sabtu' => 'Sat'
-        );
-        return array_search($value, $days);
-    }
-
+{    
     public function implicitDateConverter($value)
     {
         if (empty($value)) {
