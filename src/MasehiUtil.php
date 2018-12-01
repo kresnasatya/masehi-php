@@ -53,7 +53,7 @@ class MasehiUtil
         );
     }
 
-    public function searchImplicitMonth($key)
+    public function findImplicitMonthByNumeric($key)
     {
         $months = array(
             '1' => 'Jan',
@@ -73,7 +73,7 @@ class MasehiUtil
         return $months[$key];
     }
 
-    public function searchExplicitMonth($key)
+    public function findExplicitMonthByNumeric($key)
     {
         $months = array(
             '1' => 'Januari',
@@ -93,7 +93,7 @@ class MasehiUtil
         return $months[$key];
     }
 
-    public function searchDay($key)
+    public function findDayByLetter($key)
     {
         $days = array(
             'Sun' => 'Minggu',
@@ -106,5 +106,85 @@ class MasehiUtil
         );
 
         return $days[$key];
-    }    
+    }
+
+    public function findImplicitMonthByShortChars($char)
+    {
+        $months = array(
+            'Jan' => 'Jan',
+            'Feb' => 'Feb',
+            'Mar' => 'Mar',
+            'Apr' => 'Apr',
+            'May' => 'Mei',
+            'Jun' => 'Jun',
+            'Jul' => 'Jul',
+            'Aug' => 'Ags',
+            'Sep' => 'Sep',
+            'Oct' => 'Okt',
+            'Nov' => 'Nov',
+            'Dec' => 'Des',
+        );
+
+        return $months[$key];   
+    }
+
+    public function findImplicitMonthByLongChars($char)
+    {
+        $months = array(
+            'Jan' => 'Januari',
+            'Feb' => 'Februari',
+            'Mar' => 'Maret',
+            'Apr' => 'April',
+            'May' => 'Mei',
+            'Jun' => 'Juni',
+            'Jul' => 'Juli',
+            'Aug' => 'Agustus',
+            'Sep' => 'September',
+            'Oct' => 'Oktober',
+            'Nov' => 'November',
+            'Dec' => 'Desember',
+        );
+
+        return $months[$key];   
+    }
+
+    public function findExplicitMonthByShortChars($char)
+    {
+        $months = array(
+            'Jan' => 'Januari',
+            'Feb' => 'Februari',
+            'Mar' => 'Maret',
+            'Apr' => 'April',
+            'May' => 'Mei',
+            'Jun' => 'Juni',
+            'Jul' => 'Juli',
+            'Aug' => 'Agustus',
+            'Sep' => 'September',
+            'Oct' => 'Oktober',
+            'Nov' => 'November',
+            'Dec' => 'Desember',
+        );
+
+        return $months[$key];   
+    }
+
+    public function findExplicitMonthByLongChars($char)
+    {
+        $months = array(
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember',
+        );
+
+        return $months[$key];   
+    }
 }
