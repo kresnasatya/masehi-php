@@ -2,7 +2,7 @@
 
 namespace Masehi;
 
-class MasehiUtil
+class Util
 {
     public function explicitMonths()
     {

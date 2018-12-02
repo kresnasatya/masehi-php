@@ -2,9 +2,9 @@
 
 namespace Masehi;
 
-use Masehi\MasehiUtil as Util;
+use Masehi\Util as Util;
 
-class Masehi
+class Converter
 {   
     # 1. Params (array) => date (required), format (required), is_local (default true), timezone (default null) 
     # 2. Implement try and catch to throw error if key in params like date and format is not exists.

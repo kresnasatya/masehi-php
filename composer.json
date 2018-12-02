@@ -1,7 +1,7 @@
 {
-    "autoload": {
-        "psr-4": {
-            "Masehi\\": "src/"
-        }
+  "autoload": {
+    "psr-4": {
+      "Masehi\\": "src/Masehi"
     }
+  }
 }
