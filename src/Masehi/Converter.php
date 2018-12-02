@@ -6,9 +6,18 @@ use Masehi\Util as Util;
 
 class Converter
 {   
-    # 1. Params (array) => date (required), format (required), is_local (default true), timezone (default null) 
-    # 2. Implement try and catch to throw error if key in params like date and format is not exists.
-    public static function convert($params)
+    /**
+     * The purpose of this method is to convert date to local date by default.
+     * If you wish to denied to convert date to local date just set "is_local" = false
+     * $params = array(
+     *  "date" => (required),
+     *  "format" => (required),
+     *  "is_local" => (optional),
+     * );
+     * 
+     * For format please check this site: https://www.w3schools.com/php/func_date_date_format.asp
+     */
+    public static function convertDate($params)
     {   
         try {
             if (!isset($params["date"]) || !isset($params["format"])) {
