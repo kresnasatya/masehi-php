@@ -48,7 +48,7 @@ class Converter
 
             if ($checklFormat) {
                 $util = new Util;
-                $days = $util->explicitLocalDaysWithChar();
+                $days = $util->explicitLocalDaysByChar();
 
                 $internationalDay = '';
                 $localDay = '';
@@ -65,7 +65,7 @@ class Converter
 
             if ($checkDFormat) {
                 $util = new Util;
-                $days = $util->implicitLocalDaysWithChar();
+                $days = $util->implicitLocalDaysByChar();
 
                 $internationalDay = '';
                 $localDay = '';
@@ -82,7 +82,7 @@ class Converter
 
             if ($checkFFormat) {
                 $util = new Util;
-                $months = $util->explicitLocalMonthsWithChar();
+                $months = $util->explicitLocalMonthsByChar();
 
                 $internationalMonth = '';
                 $localMonth = '';
@@ -99,7 +99,7 @@ class Converter
 
             if ($checkMFormat) {
                 $util = new Util;
-                $months = $util->implicitLocalMonthsWithChar();
+                $months = $util->implicitLocalMonthsByChar();
 
                 $internationalMonth = '';
                 $localMonth = '';

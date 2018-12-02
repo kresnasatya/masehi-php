@@ -76,7 +76,7 @@ class Util
         );
     }
 
-    public function implicitLocalDaysWithChar()
+    public function implicitLocalDaysByChar()
     {
         return array(
             'Sun' => 'Minggu',
@@ -89,7 +89,7 @@ class Util
         );
     }
 
-    public function explicitLocalDaysWithChar()
+    public function explicitLocalDaysByChar()
     {
         return array(
             'Sunday' => 'Minggu',
@@ -130,7 +130,7 @@ class Util
         return $days[$key];
     }
 
-    public function implicitLocalMonthsWithChar()
+    public function implicitLocalMonthsByChar()
     {
         return array(
             'Jan' => 'Jan',
@@ -148,7 +148,7 @@ class Util
         );
     }
 
-    public function explicitLocalMonthsWithChar()
+    public function explicitLocalMonthsByChar()
     {
         return array(
             'January' => 'Januari',
