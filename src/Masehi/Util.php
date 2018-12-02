@@ -4,7 +4,7 @@ namespace Masehi;
 
 class Util
 {
-    public function explicitMonths()
+    public static function explicitMonths()
     {
         return array(
             '1' => 'January',
@@ -22,7 +22,7 @@ class Util
         );
     }
 
-    public function implicitMonths()
+    public static function implicitMonths()
     {
         return array(
             '1' => 'Jan',
@@ -40,7 +40,7 @@ class Util
         );
     }
 
-    public function explicitLocalMonths()
+    public static function explicitLocalMonths()
     {
         return array(
             '1' => 'Januari',
@@ -58,7 +58,7 @@ class Util
         );
     }
 
-    public function implicitLocalMonths()
+    public static function implicitLocalMonths()
     {
         return array(
             '1' => 'Jan',
@@ -76,7 +76,7 @@ class Util
         );
     }
 
-    public function implicitLocalDaysByChar()
+    public static function implicitLocalDaysByChar()
     {
         return array(
             'Sun' => 'Minggu',
@@ -89,7 +89,7 @@ class Util
         );
     }
 
-    public function explicitLocalDaysByChar()
+    public static function explicitLocalDaysByChar()
     {
         return array(
             'Sunday' => 'Minggu',
@@ -102,7 +102,7 @@ class Util
         );
     }
 
-    public function explicitLocalDays()
+    public static function explicitLocalDays()
     {
         return array(
             '1' => 'Minggu',
@@ -115,7 +115,7 @@ class Util
         );
     }
 
-    public function findLocalDayByChar($key)
+    public static function findLocalDayByChar($key)
     {
         $days = array(
             'Sun' => 'Minggu',
@@ -130,7 +130,7 @@ class Util
         return $days[$key];
     }
 
-    public function implicitLocalMonthsByChar()
+    public static function implicitLocalMonthsByChar()
     {
         return array(
             'Jan' => 'Jan',
@@ -148,7 +148,7 @@ class Util
         );
     }
 
-    public function explicitLocalMonthsByChar()
+    public static function explicitLocalMonthsByChar()
     {
         return array(
             'January' => 'Januari',
