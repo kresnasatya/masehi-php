@@ -2,256 +2,119 @@
 
 namespace Masehi;
 
+use Masehi\MasehiUtil as Util;
+
 class Masehi
-{    
-    public function implicitDateConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            $date = $value;
-            return $date;
-        } else {
-            $dateTime = new DateTime($value);
-            return $dateTime->format('d-m-Y');
-        }
-    }
-
-    public function explicitDateConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $dateTime = new DateTime($value);
-            $day = $dateTime->format('d');
-            $month = $this->searchExplicitMonth($dateTime->format('m'));
-            $year = $dateTime->format('Y');
-            return $day." ".$month." ".$year;
-        }
-    }
-
-    public function implicitDateTimeConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $date_format = new DateTime($value);
-            return $date_format->format('d-m-Y H:i:s');
-        }
-    }
-
-    public function explicitDateTimeConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $date_format = new DateTime($value);
-            $day = $date_format->format('d');
-            $month = $this->searchExplicitMonth($date_format->format('m'));
-            $year = $date_format->format('Y');
-            $time = $date_format->format('H:i:s');
-            return $this->dayConverter($value).", ". $day." ".$month." ".$year." ".$time;
-        }
-    }
-
-    public function dayConverter($value)
-    {
-        if (empty($value) || $value == "Belum selesai") {
-          return null;
-        } else {
-          $dateTime = new DateTime($value);
-          return $this->searchDay($dateTime->format('D'));
-        }
-    }
-
-    public function timeConverter($value)
-    {
-        if (empty($value)) {
-          return null;
-        } else {
-          $dateTime = new DateTime($value);
-          return $dateTime->format('H:i');
-        }
-    }
-
-    public function timestampConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            $dateTime = new DateTime($value);
-            $day = $dateTime->format('d');
-            $month = $this->searchImplicitMonth($dateTime->format('m'));
-            $year = $dateTime->format('Y');
-            $time = $dateTime->format('H:i:s');
-            return $day." ".$month." ".$year." ".$time;
-        }
-    }
-
-    // Mencetak tahun dengan format 4 digit
-    public function parsingYear($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            try {
-                $date = DateTime::createFromFormat('d-m-Y', $value);
-                $year = $date->format('Y');
-                // Check jika digit tahun yang telah dihilangkan '0' didepannya
-                // kurang dari 4 digit
-                if (strlen(ltrim($year, '0')) < 4) {
-                    throw new Exception("Tahun harus 4 digit");
-                    } else {
-                            return $year;
-                    }
-            } catch (Exception $e) {
-                return $e;
+{   
+    # 1. Params (array) => date (required), format (required), is_local (default true), timezone (default null) 
+    # 2. Implement try and catch to throw error if key in params like date and format is not exists.
+    public static function convert($params)
+    {   
+        try {
+            if (!isset($params["date"]) || !isset($params["format"])) {
+                throw new \Exception("Pastikan Anda memasang key date dan format. \n");
             }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
-    }
-
-    public function parsingTwoDigitsYear($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            $dateTime = new DateTime($value);
-            return $dateTime->format('y');
+        
+        try {
+            $date = date_create($params["date"]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
-    }
 
-    public function parsingMonth($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            $dateTime = new DateTime($value);
-            return $dateTime->format('m');
-        }
-    }
+        $formatted_date = date_format($date, $params["format"]);
 
-    public function parsingDate($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            try {
-                $date = DateTime::createFromFormat('d-m-Y', $value);
-                $year = $date->format('Y');
-                if (strlen(ltrim($year, '0')) < 4) {
-                    throw new Exception("Tahun harus 4 digit");
-                    } else {
-                            return $date->format('Y-m-d');
-                    }
-            } catch (Exception $e) {
-                return $e;
+        try {
+            if (!$formatted_date) {
+                throw new \Exception("Pastikan format yang Anda masukkan benar. \n");
             }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
-    }
 
-    // TODO: Ugly method, fixed later
-    public function parsingDatePart2($value)
-    {
-        if (empty($value)) {
-            return null;
+        if (isset($params["is_local"]) && !$params["is_local"]) {
+            return $formatted_date;
         } else {
-            try {
-                $dateTime = new DateTime($value);
-                return $dateTime->format('Y-m-d');
-            } catch (Exception $e) {
-                return $e;
-            }
-        }
-    }
+            # l (lowercase 'L') - A full textual representation of a day
+            # M - A short textual representation of a month (three letters)
+            # F - A full textual representation of a month (January through December)
+            # D - A textual representation of a day (three letters)
+            $checklFormat = (strpos($params["format"], "l") !== false) ? true : false;
+            $checkFFormat = (strpos($params["format"], "F") !== false) ? true : false;
+            $checkDFormat = (strpos($params["format"], "D") !== false) ? true : false;
+            $checkMFormat = (strpos($params["format"], "M") !== false) ? true : false;
 
-    public function parsingDateTime($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            $dateTime = new DateTime($value);
-            return $dateTime->format('Y-m-d H:i');
-        }
-    }
+            if ($checklFormat) {
+                $util = new Util;
+                $days = $util->explicitLocalDaysWithChar();
 
-    public function parsingTimestamp($value)
-    {
-        if (empty($value)) {
-            return null;
-        } else {
-            $dateTime = new DateTime($value);
-            return $dateTime->format('Y-m-d H:i');
-        }
-    }
-
-    public function slashDateConverter($value)
-    {
-        $date = str_replace('/', '-', $value);
-        return date('Y-m-d', strtotime($date));
-    }
-
-
-    public function checkFileType($value, $file_name, $allowed_mime_type)
-    {
-        if (isset($_FILES[$file_name]['name']) && $_FILES[$file_name]['name'] != "") {
-            $count_file = count($_FILES[$file_name]['name']);
-            for ($i = 0; $i < $count_file; $i++) {
-                if (!empty($_FILES[$file_name]['tmp_name'][$i])) {
-                    $mime = mime_content_type($_FILES[$file_name]['tmp_name'][$i]);
-                    if (in_array($mime, $allowed_mime_type)) {
-                        return true;
-                    } else {
-                        return false;
+                $internationalDay = '';
+                $localDay = '';
+                $string = $formatted_date;
+                foreach ($days as $key => $day) {
+                    if (strpos($string, $key) !== false) {
+                        $internationalDay = $key;
+                        $localDay = $days[$key];
                     }
                 }
+
+                $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
-        }
-    }
 
-    public function dateTimeWithoutSecondsConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $date_format = new DateTime($value);
-            $day = $date_format->format('d');
-            $month = $this->searchExplicitMonth($date_format->format('m'));
-            $year = $date_format->format('Y');
-            $time = $date_format->format('H:i');
-            return $day." ".$month." ".$year." ".$time;
-        }
-    }
+            if ($checkDFormat) {
+                $util = new Util;
+                $days = $util->implicitLocalDaysWithChar();
 
-    public function timeWithoutSecondsConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $date_format = new DateTime($value);
-            $time = $date_format->format('H:i');
-            return $time;
-        }
-    }
+                $internationalDay = '';
+                $localDay = '';
+                $string = $formatted_date;
+                foreach ($days as $key => $day) {
+                    if (strpos($string, $key) !== false) {
+                        $internationalDay = $key;
+                        $localDay = $days[$key];
+                    }
+                }
 
-    public function dateTimeConverter($value)
-    {
-        if (empty($value)) {
-            return null;
-        } elseif ($value == "Belum selesai") {
-            return $value;
-        } else {
-            $date_format = new DateTime($value);
-            return $date_format->format('d-m-Y H:i');
+                $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
+            }
+
+            if ($checkFFormat) {
+                $util = new Util;
+                $months = $util->explicitLocalMonthsWithChar();
+
+                $internationalMonth = '';
+                $localMonth = '';
+                $string = $formatted_date;
+                foreach ($months as $key => $month) {
+                    if (strpos($string, $key) !== false) {
+                        $internationalMonth = $key;
+                        $localMonth = $months[$key];
+                    }
+                }
+
+                $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
+            }
+
+            if ($checkMFormat) {
+                $util = new Util;
+                $months = $util->implicitLocalMonthsWithChar();
+
+                $internationalMonth = '';
+                $localMonth = '';
+                $string = $formatted_date;
+                foreach ($months as $key => $month) {
+                    if (strpos($string, $key) !== false) {
+                        $internationalMonth = $key;
+                        $localMonth = $months[$key];
+                    }
+                }
+
+                $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
+            }
+
+            return $formatted_date;
         }
     }
 }
