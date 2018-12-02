@@ -3,6 +3,7 @@
 namespace Masehi;
 
 use Masehi\Util as Util;
+use Masehi\Helper;
 
 class Converter
 {   
@@ -17,7 +18,7 @@ class Converter
      * 
      * For format please check this site: https://www.w3schools.com/php/func_date_date_format.asp
      */
-    public static function convertDate($params)
+    public function convertDate($params)
     {   
         try {
             if (!isset($params["date"]) || !isset($params["format"])) {
@@ -58,68 +59,32 @@ class Converter
             if ($checklFormat) {
                 $util = new Util;
                 $days = $util->explicitLocalDaysByChar();
-
-                $internationalDay = '';
-                $localDay = '';
-                $string = $formatted_date;
-                foreach ($days as $key => $day) {
-                    if (strpos($string, $key) !== false) {
-                        $internationalDay = $key;
-                        $localDay = $days[$key];
-                    }
-                }
-
+                $internationalDay = Helper::getInternational($formatted_date, $days);
+                $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkDFormat) {
                 $util = new Util;
                 $days = $util->implicitLocalDaysByChar();
-
-                $internationalDay = '';
-                $localDay = '';
-                $string = $formatted_date;
-                foreach ($days as $key => $day) {
-                    if (strpos($string, $key) !== false) {
-                        $internationalDay = $key;
-                        $localDay = $days[$key];
-                    }
-                }
-
+                $internationalDay = Helper::getInternational($formatted_date, $days);
+                $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkFFormat) {
                 $util = new Util;
                 $months = $util->explicitLocalMonthsByChar();
-
-                $internationalMonth = '';
-                $localMonth = '';
-                $string = $formatted_date;
-                foreach ($months as $key => $month) {
-                    if (strpos($string, $key) !== false) {
-                        $internationalMonth = $key;
-                        $localMonth = $months[$key];
-                    }
-                }
-
+                $internationalMonth = Helper::getInternational($formatted_date, $months);
+                $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
             }
 
             if ($checkMFormat) {
                 $util = new Util;
                 $months = $util->implicitLocalMonthsByChar();
-
-                $internationalMonth = '';
-                $localMonth = '';
-                $string = $formatted_date;
-                foreach ($months as $key => $month) {
-                    if (strpos($string, $key) !== false) {
-                        $internationalMonth = $key;
-                        $localMonth = $months[$key];
-                    }
-                }
-
+                $internationalMonth = Helper::getInternational($formatted_date, $months);
+                $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
             }
 

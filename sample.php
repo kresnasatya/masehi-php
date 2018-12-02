@@ -1,29 +1,31 @@
 <?php
 require 'vendor/autoload.php';
 
-use Masehi\Conveter as Converter;
+use Masehi\Converter as MasehiConverter;
 
-echo Masehi\Converter::convertDate(array(
+$masehi = new MasehiConverter;
+
+echo $masehi->convertDate(array(
   "date" => "2013/08/25",
   "format" => "d M Y",
 ));
 echo "\n";
-echo Masehi\Converter::convertDate(array(
+echo $masehi->convertDate(array(
   "date" => "2013/08/25",
   "format" => "d F Y",
 ));
 echo "\n";
-echo Masehi\Converter::convertDate(array(
+echo $masehi->convertDate(array(
   "date" => "2013/08/25",
   "format" => "D, d F Y",
 ));
 echo "\n";
-echo Masehi\Converter::convertDate(array(
+echo $masehi->convertDate(array(
   "date" => "2013/08/25",
   "format" => "l, d F Y",
 ));
 echo "\n";
-echo Masehi\Converter::convertDate(array(
+echo $masehi->convertDate(array(
   "date" => "2013/08/25",
   "format" => "l, d M Y",
 ));
