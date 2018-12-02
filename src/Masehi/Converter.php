@@ -18,7 +18,7 @@ class Converter
      * 
      * For format please check this site: https://www.w3schools.com/php/func_date_date_format.asp
      */
-    public function convertDate($params)
+    public static function convertDate($params)
     {   
         try {
             if (!isset($params["date"]) || !isset($params["format"])) {
@@ -57,32 +57,28 @@ class Converter
             $checkMFormat = (strpos($params["format"], "M") !== false) ? true : false;
 
             if ($checklFormat) {
-                $util = new Util;
-                $days = $util->explicitLocalDaysByChar();
+                $days = Util::explicitLocalDaysByChar();
                 $internationalDay = Helper::getInternational($formatted_date, $days);
                 $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkDFormat) {
-                $util = new Util;
-                $days = $util->implicitLocalDaysByChar();
+                $days = Util::implicitLocalDaysByChar();
                 $internationalDay = Helper::getInternational($formatted_date, $days);
                 $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkFFormat) {
-                $util = new Util;
-                $months = $util->explicitLocalMonthsByChar();
+                $months = Util::explicitLocalMonthsByChar();
                 $internationalMonth = Helper::getInternational($formatted_date, $months);
                 $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
             }
 
             if ($checkMFormat) {
-                $util = new Util;
-                $months = $util->implicitLocalMonthsByChar();
+                $months = Util::implicitLocalMonthsByChar();
                 $internationalMonth = Helper::getInternational($formatted_date, $months);
                 $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
