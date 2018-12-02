@@ -29,5 +29,6 @@
     "psr-4": {
       "Masehi\\": "src/Masehi"
     }
-  }
+  },
+  "minimum-stability": "stable"
 }
