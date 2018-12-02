@@ -29,6 +29,12 @@ Then run composer update
 php composer.phar update
 ```
 
+Or, the **simple way** is go to your root project via terminal or cmd and run this command
+
+```
+composer require satyakresna/masehi
+```
+
 ## Usage
 
 By default this library will convert date to Indonesia date automatically. If you wish to deny, simply, just set param `"is_local"` to false.
@@ -106,3 +112,4 @@ Another things to contribute:
 1. **USE THIS LIBRARY. IT'S A MUST!**
 2. Star the repo
 3. Tell your friends about this awesome library
+4. Drop an issue if you face a problem
