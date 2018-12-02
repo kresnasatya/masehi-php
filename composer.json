@@ -1,4 +1,30 @@
 {
+  "name": "satyakresna/masehi",
+  "type": "library",
+  "description": "Convert date to Indonesia language, convert time based on timezone and validate date and time",
+  "keywords": [
+    "date",
+    "datetime",
+    "time",
+    "converter",
+    "tanggal",
+    "waktu",
+    "tanggal dan waktu",
+    "konversi",
+    "indonesia"
+  ],
+  "homepage": "https://github.com/satyakresna/masehi-php",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Satya Kresna",
+      "email": "satyakresna6295@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0"
+  },
   "autoload": {
     "psr-4": {
       "Masehi\\": "src/Masehi"
