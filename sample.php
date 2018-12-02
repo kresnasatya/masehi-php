@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 
 use Masehi\Converter as MasehiConverter;
+use Masehi\Util;
 
 $masehi = new MasehiConverter;
 
@@ -36,3 +37,10 @@ echo MasehiConverter::convertDate(array(
 ));
 echo "\n";
 # Output: Minggu, 02 Des 2018
+
+# Use Util class to display list of local month
+print_r(Util::implicitLocalMonths());
+echo "\n";
+
+print_r(Util::explicitLocalMonths());
+echo "\n";
