@@ -88,10 +88,10 @@ require 'vendor/autoload.php';
 
 use Masehi\Util;
 # Use Util class to display list of local month
-print_r(Util::implicitLocalMonths());
+print_r(Util::implicitMonths());
 echo "\n";
 
-print_r(Util::explicitLocalMonths());
+print_r(Util::explicitMonths());
 echo "\n";
 
 # Those are will output list of implicit local months and explicit local months
