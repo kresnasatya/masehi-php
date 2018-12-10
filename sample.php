@@ -39,8 +39,8 @@ echo "\n";
 # Output: Minggu, 02 Des 2018
 
 # Use Util class to display list of local month
-print_r(Util::implicitLocalMonths());
+print_r(Util::implicitMonths());
 echo "\n";
 
-print_r(Util::explicitLocalMonths());
+print_r(Util::explicitMonths());
 echo "\n";

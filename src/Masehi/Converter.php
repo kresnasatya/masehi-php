@@ -57,28 +57,28 @@ class Converter
             $checkMFormat = (strpos($params["format"], "M") !== false) ? true : false;
 
             if ($checklFormat) {
-                $days = Util::explicitLocalDaysByChar();
+                $days = Util::explicitDaysByChar();
                 $internationalDay = Helper::getInternational($formatted_date, $days);
                 $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkDFormat) {
-                $days = Util::implicitLocalDaysByChar();
+                $days = Util::implicitDaysByChar();
                 $internationalDay = Helper::getInternational($formatted_date, $days);
                 $localDay = Helper::getLocal($formatted_date, $days);
                 $formatted_date = str_replace($internationalDay, $localDay, $formatted_date);
             }
 
             if ($checkFFormat) {
-                $months = Util::explicitLocalMonthsByChar();
+                $months = Util::explicitMonthsByChar();
                 $internationalMonth = Helper::getInternational($formatted_date, $months);
                 $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);
             }
 
             if ($checkMFormat) {
-                $months = Util::implicitLocalMonthsByChar();
+                $months = Util::implicitMonthsByChar();
                 $internationalMonth = Helper::getInternational($formatted_date, $months);
                 $localMonth = Helper::getLocal($formatted_date, $months);
                 $formatted_date = str_replace($internationalMonth, $localMonth, $formatted_date);

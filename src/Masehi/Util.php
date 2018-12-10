@@ -7,42 +7,6 @@ class Util
     public static function explicitMonths()
     {
         return array(
-            '1' => 'January',
-            '2' => 'February',
-            '3' => 'March',
-            '4' => 'April',
-            '5' => 'May',
-            '6' => 'June',
-            '7' => 'July',
-            '8' => 'August',
-            '9' => 'September',
-            '10' => 'October',
-            '11' => 'November',
-            '12' => 'December',
-        );
-    }
-
-    public static function implicitMonths()
-    {
-        return array(
-            '1' => 'Jan',
-            '2' => 'Feb',
-            '3' => 'Mar',
-            '4' => 'Apr',
-            '5' => 'May',
-            '6' => 'Jun',
-            '7' => 'Jul',
-            '8' => 'Aug',
-            '9' => 'Sep',
-            '10' => 'Oct',
-            '11' => 'Nov',
-            '12' => 'Dec',
-        );
-    }
-
-    public static function explicitLocalMonths()
-    {
-        return array(
             '1' => 'Januari',
             '2' => 'Februari',
             '3' => 'Maret',
@@ -58,7 +22,7 @@ class Util
         );
     }
 
-    public static function implicitLocalMonths()
+    public static function implicitMonths()
     {
         return array(
             '1' => 'Jan',
@@ -68,7 +32,7 @@ class Util
             '5' => 'Mei',
             '6' => 'Jun',
             '7' => 'Jul',
-            '8' => 'Agust',
+            '8' => 'Agst',
             '9' => 'Sept',
             '10' => 'Okt',
             '11' => 'Nov',
@@ -76,7 +40,7 @@ class Util
         );
     }
 
-    public static function implicitLocalDaysByChar()
+    public static function implicitDaysByChar()
     {
         return array(
             'Sun' => 'Minggu',
@@ -89,7 +53,7 @@ class Util
         );
     }
 
-    public static function explicitLocalDaysByChar()
+    public static function explicitDaysByChar()
     {
         return array(
             'Sunday' => 'Minggu',
@@ -102,7 +66,7 @@ class Util
         );
     }
 
-    public static function explicitLocalDays()
+    public static function explicitDays()
     {
         return array(
             '1' => 'Minggu',
@@ -115,7 +79,7 @@ class Util
         );
     }
 
-    public static function findLocalDayByChar($key)
+    public static function findDayByChar($key)
     {
         $days = array(
             'Sun' => 'Minggu',
@@ -130,7 +94,7 @@ class Util
         return $days[$key];
     }
 
-    public static function implicitLocalMonthsByChar()
+    public static function implicitMonthsByChar()
     {
         return array(
             'Jan' => 'Jan',
@@ -148,7 +112,7 @@ class Util
         );
     }
 
-    public static function explicitLocalMonthsByChar()
+    public static function explicitMonthsByChar()
     {
         return array(
             'January' => 'Januari',
